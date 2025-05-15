@@ -1,0 +1,25 @@
+<div class="cards-container">
+  <mat-card class="custom-card" *ngFor="let piercing of piercings">
+    
+    <!-- Imagem -->
+    <img mat-card-image [src]="piercing.imageUrl" alt="{{ piercing.title }}" />
+
+    <!-- Título -->
+    <mat-card-header>
+      <mat-card-title>{{ piercing.title }}</mat-card-title>
+    </mat-card-header>
+
+    <!-- Conteúdo -->
+    <mat-card-content>
+      <p>{{ piercing.description }}</p>
+      <p><strong>Preço:</strong> R$ {{ piercing.price | number:'1.2-2' }}</p>
+      <p *ngIf="!piercing.available" style="color: red;">Indisponível</p>
+    </mat-card-content>
+
+    <!-- Ações -->
+    <mat-card-actions>
+      <button mat-button color="primary" [disabled]="!piercing.available">Ver detalhes</button>
+    </mat-card-actions>
+    
+  </mat-card>
+</div>

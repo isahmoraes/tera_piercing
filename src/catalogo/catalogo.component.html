@@ -1,28 +1,30 @@
 
 <!-- Montar layout animado  -->
  <!-- imagem de background -->
-<div class="Title_page"> 
-    <h1>Personal Piercing de Luxo</h1>
-</div>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap" rel="stylesheet">
 
-<div class="nav_bar">
-    <nav>
+<header class="topbar">
+    <div class="title">
+        <h1>Personal Piercing de Luxo</h1>
+    </div>
+    <nav class="nav_bar">
         <ul>
-        <li>Contato</li>
-        <li>Saiba Mais </li>
-        <li>Login</li>
-          
+            <li><a href="#">Contato</a></li>
+            <li><a href="#">Saiba Mais</a></li>
+            <li><a href="#">Login</a></li>
         </ul>
-  
-       
     </nav>
-</div>
+</header>
 
-<!-- teste -->
-
-<!-- Cores e logo  -->
+<!-- Conteúdo principal -->
 <div class="main">
-    <h3>Catálogo de Piercings</h3>
+    <div class="title">
+         <h3 class="title_catalogo">Catálogo de Piercings</h3>
+    </div>
+   
+
+    <div class="catalogo">
+        <app-card-piercing></app-card-piercing>
+    </div>
 </div>
-
-
+ 

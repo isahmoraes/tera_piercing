@@ -29,7 +29,8 @@
 }
 
 .custom-card mat-card-content p {
-  padding-left: 5px;
+  text-align: center;
+ 
   color: #444444;
   font-size: 14px;
   margin-top: 0;

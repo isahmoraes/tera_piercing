@@ -1,0 +1,73 @@
+
+<div  *ngIf= "!showForm" class="start_form">
+
+
+<h2>Ficha de Anamnese</h2>
+<mat-card>
+
+<article>O objetivo da ficha de anamnese é fornecer ao profissional que irá atendê-lo informações importantes sobre sua saúde, rotina e possíveis impedimentos para a realização do procedimento de perfuração. Por isso, preencha a ficha com o máximo de sinceridade, a fim de evitar qualquer problema ou mal-entendido.</article>
+</mat-card>
+
+<button mat-button class="init" (click)="initForm()">Vamos começar</button>
+</div>
+<div *ngIf= "showForm" >
+<form>
+
+<mat-form-field appearance="outline" style="width: 100%;">
+      <label for="">Nome: </label>
+      <input matInput class="name" type="text">
+    </mat-form-field>   
+
+    <!-- Data de Nascimento -->
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <label>Data de Nascimento:</label>
+      <input matInput [matDatepicker]="picker" class="date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <label for="email">Email:</label>
+        <input type="email">
+    </mat-form-field>
+
+    <mat-form-field>
+        <label for="">Endereço:</label>
+        <Input type="text">
+
+    </mat-form-field>
+       <mat-form-field>
+        <label for="">Cidade:</label>
+        <Input type="text">
+            
+    </mat-form-field>
+      <mat-form-field>
+        <label for="">Estado:</label>
+        <Input type="text">
+            
+    </mat-form-field>
+
+      <mat-form-field>
+        <label for="">CPF:</label>
+        <input type="text">
+    </mat-form-field>
+      <mat-form-field>
+        <label for="">Telefone:</label>
+        <input type="tel">
+            
+    </mat-form-field>
+
+      <mat-form-field>
+        <label for="">Sexo:</label>
+        <label for="">F</label>
+        <input type="radio" >
+          <label for="">M</label>
+        <input type="radio" >
+    </mat-form-field>
+      <mat-form-field>
+        <label for="">Idade:</label>
+        <input type="number">
+            
+    </mat-form-field>
+</form>
+    </div>

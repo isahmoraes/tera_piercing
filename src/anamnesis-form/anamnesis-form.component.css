@@ -1,0 +1,52 @@
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 16px;
+  background-color: #E5E4E2; /* cinza claro, igual topbar */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(134, 134, 134, 0.25);
+  font-family: 'Playfair Display', serif;
+  color: #444444; /* texto padrão */
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field .mat-form-field-label {
+  color: #D4AF37 !important; /* dourado */
+  font-weight: 600;
+}
+
+.mat-input-element {
+  color: #444444;
+  font-family: 'Playfair Display', serif;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #D4AF37;
+  border-color: #D4AF37;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline {
+  border-color: #D4AF37;
+}
+
+.mat-datepicker-toggle-default-icon {
+  color: #D4AF37; /* dourado no ícone do datepicker */
+}
+
+/* Responsividade para colocar campos lado a lado em telas maiores */
+@media (min-width: 600px) {
+  form {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  mat-form-field {
+    flex: 1 1 calc(50% - 24px);
+    min-width: 250px;
+  }
+}

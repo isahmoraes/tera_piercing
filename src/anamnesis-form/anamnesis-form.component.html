@@ -10,80 +10,105 @@
 
 <button mat-button class="init" (click)="initForm()">Vamos começar</button>
 </div>
-<div *ngIf= "showForm" >
-<form>
-
-<mat-form-field appearance="outline" style="width: 100%;">
-      <label for="">Nome: </label>
-      <input matInput class="name" type="text">
-    </mat-form-field>   
-
-    <!-- Data de Nascimento -->
+<div *ngIf= "showForm"  class="form_anamnese">
+<form >
+ 
+  <div class="form-field">
+    <mat-label>Nome</mat-label>
     <mat-form-field appearance="outline" style="width: 100%;">
-      <label>Data de Nascimento:</label>
-      <input matInput [matDatepicker]="picker" class="date">
+      <input matInput type="text" [formControl]="name">
+    </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-label>Data de Nascimento</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput [matDatepicker]="picker" [formControl]="birthDate" />
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+  </div>
 
-    <mat-form-field>
-        <label for="email">Email:</label>
-        <input type="email">
+  <div class="form-field">
+    <mat-label>Email</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput type="email" [formControl]="email">
     </mat-form-field>
+  </div>
 
-    <mat-form-field>
-        <label for="">Endereço:</label>
-        <Input type="text">
+  <div class="form-field">
+    <mat-label>Endereço</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput type="text" [formControl]="address">
+    </mat-form-field>
+  </div>
 
+  <div class="form-field">
+    <mat-label>Cidade</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput type="text" [formControl]="city">
     </mat-form-field>
-       <mat-form-field>
-        <label for="">Cidade:</label>
-        <Input type="text">
-            
-    </mat-form-field>
-      <mat-form-field>
-        <label for="">Estado:</label>
-        <Input type="text">
-            
-    </mat-form-field>
+  </div>
 
-      <mat-form-field>
-        <label for="">CPF:</label>
-        <input type="text">
+  <div class="form-field">
+    <mat-label>Estado</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput type="text" [formControl]="state">
     </mat-form-field>
-      <mat-form-field>
-        <label for="">Telefone:</label>
-        <input type="tel">
-            
-    </mat-form-field>
+  </div>
 
-      <mat-form-field>
-        <label for="">Sexo:</label>
-        <label for="">F</label>
-        <input type="radio" >
-          <label for="">M</label>
-        <input type="radio" >
+  <div class="form-field">
+    <mat-label>CPF</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput type="text" [formControl]="cpf">
     </mat-form-field>
-      <mat-form-field>
-        <label for="">Idade:</label>
-        <input type="number">
-            
+  </div>
+
+  <div class="form-field">
+    <mat-label>Telefone</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput type="tel" [formControl]="phone">
     </mat-form-field>
+  </div>
+
+  <div class="form-field">
+    <mat-label>Idade</mat-label>
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <input matInput type="number" [formControl]="age">
     </mat-form-field>
-          <mat-form-field>
-        <label for="">Como conheceu o meu trabalho ?</label>
-        <input type="radio">
-            <label for="">Instagram</label>
-             <input type="radio">
-            <label for="">Visagismo de Alguem</label>
+  </div>
+  <div class="form-field">
+    <mat-label>Sexo</mat-label>
+    <mat-radio-group [formControl]="gender">
+      <mat-radio-button value="F">Feminino</mat-radio-button>
+      <mat-radio-button value="M">Masculino</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+
+
+  <div class="form-field">
+    <mat-label>Como me conheceu?</mat-label>
+    <mat-radio-group [formControl]="source">
+      <mat-radio-button value="Instagram">Instagram</mat-radio-button>
+      <mat-radio-button value="Amiga">Visagismo de uma amiga</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="form-field">
+    <mat-label>Possui alguma alergia?</mat-label>
+    <mat-radio-group [formControl]="hasAllergy" (change)="onAllergyChange($event.value)">
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div *ngIf="isAllergic" style="margin-top: 10px;">
+    <mat-form-field appearance="outline" style="width: 100%;">
+      <mat-label>Qual alergia?</mat-label>
+      <input matInput [formControl]= "allergyDescription">
     </mat-form-field>
-       <mat-form-field>
-        <label for="">Possui alergias:</label>
-         <input type="radio">
-            <label for="">Sim</label>
-             <input type="radio">
-            <label for="">Não</label>
-            
-    </mat-form-field>
+  </div>
+
 </form>
     </div>

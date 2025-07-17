@@ -1,0 +1,30 @@
+export interface Client {
+  name: string;
+  birtday: string;
+  email: string;
+  address: string;
+  cpf: string;
+  phone: string;
+  gender: string;
+  age: string;
+  know_id: number;
+  social_midia: string;
+  allergy: boolean;
+  pathology_id: string;
+  illness: string;
+  medicine: string;
+  suffers_from_id: number;
+  controlled_medicine: string;
+  sick_last_id: number;
+  alchool: boolean;
+  frequency_alchool: string;
+  smoking: boolean;
+  frequency_smoking: string;
+  helmet: boolean;
+  sport: string;
+  travel: string;
+  menstruation?: boolean;
+  breastfeeding?: boolean;
+  pregnant_woman?: boolean;
+  agree?: boolean;
+}

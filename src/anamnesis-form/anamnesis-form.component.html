@@ -1,114 +1,40 @@
-
-<div  *ngIf= "!showForm" class="start_form">
-
-
-<h2>Ficha de Anamnese</h2>
-<mat-card>
-
-<article>O objetivo da ficha de anamnese é fornecer ao profissional que irá atendê-lo informações importantes sobre sua saúde, rotina e possíveis impedimentos para a realização do procedimento de perfuração. Por isso, preencha a ficha com o máximo de sinceridade, a fim de evitar qualquer problema ou mal-entendido.</article>
-</mat-card>
-
-<button mat-button class="init" (click)="initForm()">Vamos começar</button>
+<div *ngIf="!showForm" class="start-form">
+  <h2>Ficha de Anamnese</h2>
+  <mat-card>
+    <p>
+      O objetivo da ficha de anamnese é fornecer ao profissional que irá atendê-lo informações importantes sobre sua saúde, rotina e possíveis impedimentos para a realização do procedimento de perfuração. Por isso, preencha a ficha com o máximo de sinceridade, a fim de evitar qualquer problema ou mal-entendido.
+    </p>
+  </mat-card>
+  <button mat-raised-button color="primary" (click)="initForm()">Vamos começar</button>
 </div>
-<div *ngIf= "showForm"  class="form_anamnese">
-<form >
- 
-  <div class="form-field">
-    <mat-label>Nome</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="text" [formControl]="name">
-    </mat-form-field>
-  </div>
 
-  <div class="form-field">
-    <mat-label>Data de Nascimento</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput [matDatepicker]="picker" [formControl]="birthDate" />
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
+<div *ngIf="showForm" class="form-anamnese">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
 
-  <div class="form-field">
-    <mat-label>Email</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="email" [formControl]="email">
-    </mat-form-field>
-  </div>
+    <div class="form-section" *ngFor="let question of questions; let i = index" [formGroupName]="i">
+      <label class="question-label">{{ question.text }}</label>
 
-  <div class="form-field">
-    <mat-label>Endereço</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="text" [formControl]="address">
-    </mat-form-field>
-  </div>
+      <!-- Texto -->
+      <mat-form-field *ngIf="question.type === 'text'" appearance="fill" class="full-width">
+        <input matInput [formControlName]="'answer'" placeholder="Resposta" />
+      </mat-form-field>
 
-  <div class="form-field">
-    <mat-label>Cidade</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="text" [formControl]="city">
-    </mat-form-field>
-  </div>
+      <!-- Multiple Choice -->
+      <div *ngIf="question.type === 'multiplechoice'" class="multiple-choice">
+        <mat-checkbox *ngFor="let option of question.options" 
+                      [formControlName]="option.value"
+                      class="rounded-checkbox">
+          {{ option.label }}
+        </mat-checkbox>
+      </div>
 
-  <div class="form-field">
-    <mat-label>Estado</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="text" [formControl]="state">
-    </mat-form-field>
-  </div>
-
-  <div class="form-field">
-    <mat-label>CPF</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="text" [formControl]="cpf">
-    </mat-form-field>
-  </div>
-
-  <div class="form-field">
-    <mat-label>Telefone</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="tel" [formControl]="phone">
-    </mat-form-field>
-  </div>
-
-  <div class="form-field">
-    <mat-label>Idade</mat-label>
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <input matInput type="number" [formControl]="age">
-    </mat-form-field>
-  </div>
-  <div class="form-field">
-    <mat-label>Sexo</mat-label>
-    <mat-radio-group [formControl]="gender">
-      <mat-radio-button value="F">Feminino</mat-radio-button>
-      <mat-radio-button value="M">Masculino</mat-radio-button>
-    </mat-radio-group>
-  </div>
-
-
-
-  <div class="form-field">
-    <mat-label>Como me conheceu?</mat-label>
-    <mat-radio-group [formControl]="source">
-      <mat-radio-button value="Instagram">Instagram</mat-radio-button>
-      <mat-radio-button value="Amiga">Visagismo de uma amiga</mat-radio-button>
-    </mat-radio-group>
-  </div>
-
-  <div class="form-field">
-    <mat-label>Possui alguma alergia?</mat-label>
-    <mat-radio-group [formControl]="hasAllergy" (change)="onAllergyChange($event.value)">
-      <mat-radio-button value="Sim">Sim</mat-radio-button>
-      <mat-radio-button value="Não">Não</mat-radio-button>
-    </mat-radio-group>
-  </div>
-
-  <div *ngIf="isAllergic" style="margin-top: 10px;">
-    <mat-form-field appearance="outline" style="width: 100%;">
-      <mat-label>Qual alergia?</mat-label>
-      <input matInput [formControl]= "allergyDescription">
-    </mat-form-field>
-  </div>
-
-</form>
+      <!-- Boolean -->
+      <mat-checkbox *ngIf="question.type === 'bool'" formControlName="answer" class="bool-checkbox">
+        {{ question.label || 'Sim/Não' }}
+      </mat-checkbox>
     </div>
+
+    <button mat-raised-button color="accent" type="submit">Enviar</button>
+  </form>
+</div>
